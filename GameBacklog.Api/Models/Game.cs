@@ -9,4 +9,4 @@ public class Game
     public int? Rating { get; set; }
     public string? Notes { get; set; }
     public DateTime DateAdded { get; set; } = DateTime.UtcNow;
-}
+}   

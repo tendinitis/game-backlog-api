@@ -41,4 +41,16 @@ public class GamesController : ControllerBase
         _games.Add(game);
         return CreatedAtAction(nameof(GetById), new { id = gameId }, game);
     }
+
+    [HttpDelete("{id:int}")]
+    public IActionResult DeleteGame(int id)
+    {
+        var game = _games.FirstOrDefault(g => g.Id == id);
+        if (game is null)
+        {
+            return NotFound("Game not found.");
+        }
+        _games.Remove(game);
+        return NoContent();
+    }
 }

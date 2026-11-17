@@ -53,4 +53,20 @@ public class GamesController : ControllerBase
         _games.Remove(game);
         return NoContent();
     }
+
+    [HttpPut("{id:int}")]
+    public IActionResult UpdateGame(int id, UpdateGameRequest request)
+    {
+        var game = _games.FirstOrDefault(g => g.Id == id);
+        if (game is null) 
+        {
+            return NotFound("Game not found.");
+        }
+        game.Title = request.Title;
+        game.Platform = request.Platform;
+        game.Status = request.Status;
+        game.Rating = request.Rating;
+        game.Notes = request.Notes;
+        return NoContent();
+    }
 }
